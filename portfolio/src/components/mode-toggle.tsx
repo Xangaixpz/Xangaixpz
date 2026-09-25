@@ -5,7 +5,13 @@ import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 
-export function ModeToggle({ className }: { className?: string }) {
+export function ModeToggle({
+  className,
+  label,
+}: {
+  className?: string;
+  label: string;
+}) {
   const { theme, setTheme } = useTheme();
 
   return (
@@ -14,7 +20,7 @@ export function ModeToggle({ className }: { className?: string }) {
       variant="link"
       size="icon"
       className={cn(className)}
-      aria-label="Alternar tema"
+      aria-label={label}
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
       <SunIcon className="h-full w-full" />

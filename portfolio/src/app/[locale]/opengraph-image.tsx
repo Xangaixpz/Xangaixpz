@@ -1,9 +1,10 @@
- 
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { DATA } from "@/data/resume";
+import { locales, toLocale } from "@/i18n";
 
-export const runtime = "edge";
-
+// Gerada no build (uma por idioma), então não depende de runtime na hospedagem.
 export const alt = DATA.name;
 export const size = {
     width: 1200,
@@ -11,20 +12,34 @@ export const size = {
 };
 export const contentType = "image/png";
 
+export function generateStaticParams() {
+    return locales.map((locale) => ({ locale }));
+}
+
+const publicFile = (path: string) => readFile(join(process.cwd(), "public", path));
+
 const getFontData = async () => {
     try {
         const [cabinetGrotesk, clashDisplay] = await Promise.all([
-            fetch(
-                new URL("../../public/fonts/CabinetGrotesk-Medium.ttf", import.meta.url)
-            ).then((res) => res.arrayBuffer()),
-            fetch(
-                new URL("../../public/fonts/ClashDisplay-Semibold.ttf", import.meta.url)
-            ).then((res) => res.arrayBuffer()),
+            publicFile("fonts/CabinetGrotesk-Medium.ttf"),
+            publicFile("fonts/ClashDisplay-Semibold.ttf"),
         ]);
         return { cabinetGrotesk, clashDisplay };
     } catch (error) {
         console.error("Failed to load fonts:", error);
         return null;
+    }
+};
+
+const getAvatarDataUrl = async () => {
+    const avatarUrl: string = DATA.avatarUrl;
+    if (!avatarUrl.startsWith("/")) return undefined;
+    try {
+        const file = await publicFile(avatarUrl.slice(1));
+        const type = avatarUrl.endsWith(".png") ? "image/png" : "image/jpeg";
+        return `data:${type};base64,${file.toString("base64")}`;
+    } catch {
+        return undefined;
     }
 };
 
@@ -105,12 +120,18 @@ const styles = {
     },
 } as const;
 
-export default async function Image() {
+export default async function Image({
+    params,
+}: {
+    params: Promise<{ locale: string }>;
+}) {
     try {
-        const fontData = await getFontData();
-        const imageUrl = DATA.avatarUrl
-            ? new URL(DATA.avatarUrl, DATA.url).toString()
-            : undefined;
+        const locale = toLocale((await params).locale);
+        const description = DATA.description[locale];
+        const [fontData, imageUrl] = await Promise.all([
+            getFontData(),
+            getAvatarDataUrl(),
+        ]);
 
         return new ImageResponse(
             (
@@ -124,9 +145,7 @@ export default async function Image() {
                             )}
                             <div style={styles.mainContainer}>
                                 <div style={styles.title}>{DATA.name}</div>
-                                {DATA.description && (
-                                    <div style={styles.description}>{DATA.description}</div>
-                                )}
+                                <div style={styles.description}>{description}</div>
                             </div>
                         </div>
                     </div>

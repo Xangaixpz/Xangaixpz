@@ -1,10 +1,13 @@
 import BlurFade from "@/components/magicui/blur-fade";
 import { ProjectCard } from "@/components/project-card";
 import { DATA } from "@/data/resume";
+import { UI } from "@/data/ui";
+import type { Locale } from "@/i18n";
 
 const BLUR_FADE_DELAY = 0.04;
 
-export default function ProjectsSection() {
+export default function ProjectsSection({ locale }: { locale: Locale }) {
+    const t = UI[locale];
     return (
         <div>
             <div className="flex min-h-0 flex-col gap-y-8">
@@ -15,7 +18,7 @@ export default function ProjectsSection() {
 
                         />
                         <div className="border bg-primary z-10 rounded-xl px-4 py-1">
-                            <span className="text-background text-sm font-medium">Projetos</span>
+                            <span className="text-background text-sm font-medium">{t.projectsBadge}</span>
                         </div>
                         <div
                             className="flex-1 h-px bg-linear-to-l from-transparent from-5% via-border via-95% to-transparent"
@@ -23,10 +26,9 @@ export default function ProjectsSection() {
                         />
                     </div>
                     <div className="flex flex-col gap-y-3 items-center justify-center">
-                        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">O que eu já construí</h2>
+                        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">{t.projectsTitle}</h2>
                         <p className="text-muted-foreground md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed text-balance text-center">
-                            Do SaaS em que trabalho todo dia a lojas e sites feitos
-                            sob medida pra clientes no Brasil, na Espanha e em Andorra.
+                            {t.projectsText}
                         </p>
                     </div>
                 </div>
@@ -41,13 +43,21 @@ export default function ProjectsSection() {
                                 href={project.href}
                                 key={project.title}
                                 title={project.title}
-                                category={project.category}
-                                description={project.description}
-                                subtitle={project.subtitle}
+                                category={project.category[locale]}
+                                description={project.description[locale]}
+                                subtitle={project.subtitle[locale]}
                                 tags={project.technologies}
                                 image={project.image}
                                 video={project.video}
-                                links={project.links}
+                                links={project.links.map((link) => ({
+                                    ...link,
+                                    type: link.type[locale],
+                                }))}
+                                labels={{
+                                    private: t.private,
+                                    privateHint: t.privateHint,
+                                    open: t.open.replace("{title}", project.title),
+                                }}
                             />
                         </BlurFade>
                     ))}

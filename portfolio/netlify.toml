@@ -1,0 +1,7 @@
+# A Netlify detecta o Next.js e instala o adaptador sozinha.
+[build]
+  command = "pnpm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"

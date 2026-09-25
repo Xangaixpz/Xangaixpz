@@ -1,9 +1,18 @@
+"use client";
+
 import Link from "next/link";
 import { Home } from "lucide-react";
+import { useParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
+import { UI } from "@/data/ui";
+import { toLocale } from "@/i18n";
 
 export default function NotFound() {
+    const params = useParams<{ locale: string }>();
+    const locale = toLocale(params?.locale);
+    const t = UI[locale];
+
     return (
         <div className="min-h-[calc(100vh-12rem)] flex flex-col">
             <div className="flex-1 flex items-center justify-center p-8">
@@ -12,16 +21,16 @@ export default function NotFound() {
                         404
                     </h1>
                     <h2 className="text-4xl tracking-tight font-semibold text-foreground mb-2">
-                        Página não encontrada
+                        {t.notFoundTitle}
                     </h2>
                     <p className="text-muted-foreground mb-8 text-balance tracking-tight font-medium">
-                        A página que você procura não existe ou mudou de endereço.
+                        {t.notFoundText}
                     </p>
                     <div className="flex flex-col sm:flex-row gap-3">
-                        <Link href="/">
+                        <Link href={`/${locale}`}>
                             <Button variant="outline" className="gap-2 cursor-pointer">
                                 <Home className="h-4 w-4" />
-                                Voltar pro início
+                                {t.backHome}
                             </Button>
                         </Link>
                     </div>

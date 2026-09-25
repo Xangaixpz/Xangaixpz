@@ -75,6 +75,7 @@ interface Props {
     type: string;
     href: string;
   }[];
+  labels: { private: string; privateHint: string; open: string };
   className?: string;
 }
 
@@ -88,6 +89,7 @@ export function ProjectCard({
   image,
   video,
   links,
+  labels,
   className,
 }: Props) {
   const media = video ? (
@@ -158,17 +160,17 @@ export function ProjectCard({
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
-              aria-label={`Abrir ${title}`}
+              aria-label={labels.open}
             >
               <ArrowUpRight className="h-4 w-4" aria-hidden />
             </Link>
           ) : (
             <span
               className="flex items-center gap-1 text-xs text-muted-foreground"
-              title="Código privado do cliente"
+              title={labels.privateHint}
             >
               <Lock className="h-3 w-3" aria-hidden />
-              Privado
+              {labels.private}
             </span>
           )}
         </div>

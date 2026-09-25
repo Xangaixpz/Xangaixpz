@@ -2,7 +2,10 @@ import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DATA } from "@/data/resume";
+import { UI } from "@/data/ui";
+import { isLocale } from "@/i18n";
 import Markdown from "react-markdown";
+import { notFound } from "next/navigation";
 import ContactSection from "@/components/section/contact-section";
 import ProjectsSection from "@/components/section/projects-section";
 import StatsSection from "@/components/section/stats-section";
@@ -11,7 +14,17 @@ import { StackIcon } from "@/components/stack-icon";
 
 const BLUR_FADE_DELAY = 0.04;
 
-export default function Page() {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  if (!isLocale(locale)) notFound();
+
+  const t = UI[locale];
+  const avatarUrl: string = DATA.avatarUrl;
+
   return (
     <main className="min-h-dvh flex flex-col gap-14 relative">
       <section id="hero">
@@ -22,18 +35,20 @@ export default function Page() {
                 delay={BLUR_FADE_DELAY}
                 className="text-3xl font-semibold tracking-tighter sm:text-4xl lg:text-5xl"
                 yOffset={8}
-                text={`Oi, eu sou o ${DATA.name.split(" ")[0]} 👋`}
+                text={t.greeting.replace("{name}", DATA.name.split(" ")[0])}
               />
               <BlurFadeText
                 className="text-muted-foreground max-w-[600px] md:text-lg lg:text-xl"
                 delay={BLUR_FADE_DELAY}
-                text={DATA.description}
+                text={DATA.description[locale]}
               />
             </div>
             <BlurFade delay={BLUR_FADE_DELAY} className="order-1 md:order-2">
               <Avatar className="size-24 md:size-32 border rounded-full shadow-lg ring-4 ring-muted">
-                <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
-                <AvatarFallback>{DATA.initials}</AvatarFallback>
+                {avatarUrl && <AvatarImage alt={DATA.name} src={avatarUrl} />}
+                <AvatarFallback className="text-2xl md:text-3xl font-semibold tracking-tight">
+                  {DATA.initials}
+                </AvatarFallback>
               </Avatar>
             </BlurFade>
           </div>
@@ -42,13 +57,11 @@ export default function Page() {
       <section id="about">
         <div className="flex min-h-0 flex-col gap-y-4">
           <BlurFade delay={BLUR_FADE_DELAY * 3}>
-            <h2 className="text-xl font-bold">Sobre</h2>
+            <h2 className="text-xl font-bold">{t.about}</h2>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 4}>
             <div className="prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
-              <Markdown>
-                {DATA.summary}
-              </Markdown>
+              <Markdown>{DATA.summary[locale]}</Markdown>
             </div>
           </BlurFade>
         </div>
@@ -56,17 +69,17 @@ export default function Page() {
       <section id="work">
         <div className="flex min-h-0 flex-col gap-y-6">
           <BlurFade delay={BLUR_FADE_DELAY * 5}>
-            <h2 className="text-xl font-bold">Experiência</h2>
+            <h2 className="text-xl font-bold">{t.work}</h2>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 6}>
-            <WorkSection />
+            <WorkSection locale={locale} />
           </BlurFade>
         </div>
       </section>
       <section id="skills">
         <div className="flex min-h-0 flex-col gap-y-4">
           <BlurFade delay={BLUR_FADE_DELAY * 9}>
-            <h2 className="text-xl font-bold">Stack</h2>
+            <h2 className="text-xl font-bold">{t.stack}</h2>
           </BlurFade>
           <div className="flex flex-wrap gap-2">
             {DATA.skills.map((skill, id) => (
@@ -82,17 +95,17 @@ export default function Page() {
       </section>
       <section id="projects">
         <BlurFade delay={BLUR_FADE_DELAY * 11}>
-          <ProjectsSection />
+          <ProjectsSection locale={locale} />
         </BlurFade>
       </section>
       <section id="stats">
         <BlurFade delay={BLUR_FADE_DELAY * 13}>
-          <StatsSection />
+          <StatsSection locale={locale} />
         </BlurFade>
       </section>
       <section id="contact">
         <BlurFade delay={BLUR_FADE_DELAY * 16}>
-          <ContactSection />
+          <ContactSection locale={locale} />
         </BlurFade>
       </section>
     </main>
