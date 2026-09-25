@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="250" viewBox="0 0 600 250" role="img" aria-label="JavaScript 46,3%, CSS 30,9%, TypeScript 17,2%, HTML 4,4%, SQL 1,2%">
+<rect x="0.5" y="0.5" width="599" height="249" rx="8" fill="#0d1117" stroke="#30363d"/>
+<text x="30" y="50" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="22" font-weight="600" fill="#58a6ff">Linguagens</text>
+<clipPath id="b"><rect x="30" y="76" width="540" height="10" rx="5"/></clipPath><g clip-path="url(#b)">
+<rect x="30.0" y="76" width="250.5" height="10" fill="#f1e05a"/>
+<rect x="280.0" y="76" width="167.4" height="10" fill="#663399"/>
+<rect x="446.9" y="76" width="93.4" height="10" fill="#3178c6"/>
+<rect x="539.8" y="76" width="24.3" height="10" fill="#e34c26"/>
+<rect x="563.5" y="76" width="7.0" height="10" fill="#e38c00"/>
+</g>
+<circle cx="36" cy="122" r="6" fill="#f1e05a"/><text x="52" y="128" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="18"><tspan fill="#e6edf3" font-weight="600">JavaScript</tspan><tspan fill="#8b949e"> 46,3%</tspan></text>
+<circle cx="36" cy="162" r="6" fill="#663399"/><text x="52" y="168" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="18"><tspan fill="#e6edf3" font-weight="600">CSS</tspan><tspan fill="#8b949e"> 30,9%</tspan></text>
+<circle cx="36" cy="202" r="6" fill="#3178c6"/><text x="52" y="208" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="18"><tspan fill="#e6edf3" font-weight="600">TypeScript</tspan><tspan fill="#8b949e"> 17,2%</tspan></text>
+<circle cx="316" cy="122" r="6" fill="#e34c26"/><text x="332" y="128" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="18"><tspan fill="#e6edf3" font-weight="600">HTML</tspan><tspan fill="#8b949e"> 4,4%</tspan></text>
+<circle cx="316" cy="162" r="6" fill="#e38c00"/><text x="332" y="168" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="18"><tspan fill="#e6edf3" font-weight="600">SQL</tspan><tspan fill="#8b949e"> 1,2%</tspan></text>
+</svg>

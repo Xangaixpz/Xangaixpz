@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="170" viewBox="0 0 600 170" role="img" aria-label="momentum-andorra: Site pra um cliente de experiências de wellness e gastronomia em Andorra, todo em espanhol.">
+<rect x="0.5" y="0.5" width="599" height="169" rx="8" fill="#0d1117" stroke="#30363d"/>
+<path transform="translate(28 24) scale(1.25)" d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.25.25 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z" fill="#8b949e"/>
+<text x="58" y="43" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="21" font-weight="600" fill="#58a6ff">momentum-andorra</text>
+<rect x="491.8" y="24" width="80.2" height="26" rx="13" fill="none" stroke="#30363d"/><text x="501.8" y="42" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="14" fill="#8b949e">Private</text>
+<text x="28" y="84" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="17" fill="#8b949e">Site pra um cliente de experiências de wellness e gastronomia</text>
+<text x="28" y="110" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="17" fill="#8b949e">em Andorra, todo em espanhol.</text>
+<circle cx="36" cy="140" r="7" fill="#3178c6"/><text x="50" y="146" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="16" fill="#8b949e">TypeScript<tspan dx="18">Next.js · Tailwind</tspan></text>
+</svg>
